@@ -12,7 +12,7 @@ class Autonomous {
 
   public:
     //constructor
-    Autonomous(drivetrain robot);
+    Autonomous(drivetrain & robot);
     void execute(int selection);
 
 };

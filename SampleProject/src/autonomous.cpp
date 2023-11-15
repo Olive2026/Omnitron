@@ -1,6 +1,6 @@
 #include "autonomous.h"
 
-Autonomous::Autonomous(drivetrain train):robot(train) {}
+Autonomous::Autonomous(drivetrain & train):robot(train) {}
 
 void Autonomous::execute(int selection) {
   switch(selection) {
