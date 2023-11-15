@@ -19,8 +19,10 @@ void Autonomous::execute(int selection) {
   }
 }
 
+// autonomous code for our robot on aliance side
 void Autonomous::runAutonomus1() {
-
+ robot.driveFor(forward, 11, distanceUnits::in);
+ robot.turnFor(right, 90, degrees);
 }
 
 
