@@ -1,0 +1,18 @@
+{
+	"project": {
+		"name": "OmnitronSample",
+		"slot": 1,
+		"description": "Sample OmnitronSample project.",
+		"platform": "V5",
+		"creationDate": "Sat, 13 Jan 2024 17:40:30 GMT",
+		"language": "cpp",
+		"sdkVersion": "V5_20220726_10_00_00",
+		"cpp": {
+			"includePath": []
+		}
+	},
+	"extension": {
+		"version": "0.5.0",
+		"json": 1
+	}
+}
