@@ -63,10 +63,14 @@ drivetrain initialize_drivetrian() {
   motor_group right_motors(rightMotor1, rightMotor2, rightMotor3);
 
   double wheel_diameter = 4;
-  double wheel_circumference = 2 * wheel_diameter/2 * 3.14; // 2 * r * PI
-  double wheel_distance = 14; // 14 inches
+  double wheel_circumference = wheel_diameter * 3.14; // 2 * r * PI
+  // distance between opposite wheels (robot width)
+  double wheel_distance = 14;
+  // distance between the front and last wheels (robot length)
+  double wheel_base = 14; 
+  double gear_ratio = 4/7;
 
-  drivetrain robot(left_motors, right_motors, wheel_circumference, wheel_distance, wheel_distance, distanceUnits::in);
+  drivetrain robot(left_motors, right_motors, wheel_circumference, wheel_distance, wheel_base, distanceUnits::in, gear_ratio);
   return robot;
 }
 
