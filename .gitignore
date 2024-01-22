@@ -30,8 +30,6 @@
 *.exe
 *.out
 *.app
-compile_commands.json
 build/
-SampleProject/.vscode/c_cpp_properties.json
-SampleProject/.vscode/settings.json
-SampleProject/.vscode/vex_project_settings.json
+**/.vscode/
+.DS_Store
