@@ -124,6 +124,11 @@ void skillAuton(void)
   robot.setDriveVelocity(50, percentUnits::pct);
   thwacker.setVelocity(60, percentUnits::pct);
   runCata();
+  //TODO: wait for 35 secs
+  wait(30, sec); // msec is also possible for milliseconds precision
+
+  //stop catapult, toggle off
+  runCata();
   //goforward
   robot.driveFor(directionType::fwd, 30, distanceUnits::in);
   robot.turnFor(60, rotationUnits::deg);
