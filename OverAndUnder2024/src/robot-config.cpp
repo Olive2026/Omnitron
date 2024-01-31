@@ -29,12 +29,12 @@ using code = vision::code;
 brain Brain;
 
 // VEXcode device constructors
-motor leftMotor1 = motor(PORT11, ratio6_1, false);
-motor leftMotor2 = motor(PORT4, ratio6_1, false);
-motor leftMotor3 = motor(PORT19, ratio6_1, true);
-motor rightMotor1 = motor(PORT1, ratio6_1, true);
-motor rightMotor2 = motor(PORT9, ratio6_1, true);
-motor rightMotor3 = motor(PORT2, ratio6_1, false);
+motor leftF = motor(PORT11, ratio6_1, false);
+motor leftTB = motor(PORT4, ratio6_1, false);
+motor leftBB = motor(PORT19, ratio6_1, true);
+motor rightF = motor(PORT1, ratio6_1, true);
+motor rightTB = motor(PORT9, ratio6_1, false);
+motor rightBB = motor(PORT2, ratio6_1, true);
 motor thwacker = motor(PORT10, ratio6_1, false);
 digital_out valve = digital_out(Brain.ThreeWirePort.A);
 

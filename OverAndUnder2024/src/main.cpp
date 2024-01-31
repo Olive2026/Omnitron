@@ -100,8 +100,8 @@ bool DrivetrainRNeedsToBeStopped_Controller1 = true;
 // may add another controller
 //controller Controller1 = controller(primary);
 
-motor_group left_motors(leftMotor1, leftMotor2, leftMotor3);
-motor_group right_motors(rightMotor1, rightMotor2, rightMotor3);
+motor_group left_motors(leftF, leftTB, leftBB);
+motor_group right_motors(rightF, rightTB, rightBB);
 
 double wheel_diameter = 4;
 double wheel_circumference = 2 * wheel_diameter/2 * 3.14; // 2 * r * PI
@@ -118,10 +118,17 @@ drivetrain robot(left_motors, right_motors, wheel_circumference, wheel_distance,
 //     valve.set(true);
 //   }
 // }
-
+void solonoid(){
+  if(valve.value() == 1){
+    valve.set(false);
+  } else if(valve.value() == 0) {
+    valve.set(true);
+  }
+}
 void skillAuton(void)
 {
   robot.setDriveVelocity(50, percentUnits::pct);
+  
   thwacker.setVelocity(60, percentUnits::pct);
   runCata();
   //TODO: wait for 35 secs
@@ -130,13 +137,29 @@ void skillAuton(void)
   //stop catapult, toggle off
   runCata();
   //goforward
-  robot.driveFor(directionType::fwd, 30, distanceUnits::in);
-  robot.turnFor(60, rotationUnits::deg);
-  robot.driveFor(directionType::fwd, 50, distanceUnits::in);
+  robot.driveFor(directionType::fwd, 25, distanceUnits::in);
+  //add thwacker lower, 400 degrees??
+  robot.driveFor(directionType::fwd, 35, distanceUnits::in);
+  robot.turnFor(145, rotationUnits::deg);
+
+  // add pneumatics code
+  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
   valve.set(true);
+  robot.driveFor(directionType::fwd, 5, distanceUnits::in);
+  robot.driveFor(directionType::fwd, -15, distanceUnits::in);
+  robot.driveFor(directionType::fwd, 13, distanceUnits::in);
+  //turning
+  robot.turnFor(80, rotationUnits::deg);
   robot.driveFor(directionType::fwd, 10, distanceUnits::in);
-  robot.driveFor(directionType::fwd, -10, distanceUnits::in);
-  robot.driveFor(directionType::fwd, 10, distanceUnits::in);
+  robot.turnFor(90, rotationUnits::deg);
+  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
+  robot.turnFor(90, rotationUnits::deg);
+  robot.driveFor(directionType::fwd, -25, distanceUnits::in);
+  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
+  robot.driveFor(directionType::fwd, -25, distanceUnits::in);
+  robot.turnFor(90, rotationUnits::deg);
+  
+
 }
 void usercontrol(void) {
   // define a task that will handle monitoring inputs from Controller1
@@ -201,11 +224,30 @@ void usercontrol(void) {
 int main() {
   // Set up callbacks for autonomous and driver control periods.
 
+  //Sets up the if statement for testing
+  //int val = 2;
 
   thwacker.setVelocity(60, percent);
-
+  //competition Comp;
+  //Comp.autonomous(skillAuton);
+  //Comp.drivercontrol(usercontrol);
+  skillAuton();
   // Run the pre-autonomous function.
-  autonomous();
+  /*
+  if(val==1)
+  {
+    autonomous();
+  }
+  else if(val==2)
+  {
+    skillAuton();
+  }
+  else if(val==3)
+  {
+    usercontrol();
+  }
+  */
+  
 
   // Prevent main from exiting with an infinite loop.
   while (true) {
