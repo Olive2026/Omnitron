@@ -104,7 +104,7 @@ motor_group left_motors(leftF, leftTB, leftBB);
 motor_group right_motors(rightF, rightTB, rightBB);
 
 double wheel_diameter = 4;
-double wheel_circumference = 2 * wheel_diameter/2 * 3.14; // 2 * r * PI
+double wheel_circumference = 2 * (wheel_diameter/2) * 3.14; // 2 * r * PI
 double wheel_distance = 12; // 14 inches
 double wheel_base = 12.5;
 double gearRat = 4/7;
@@ -135,7 +135,7 @@ void skillAuton(void)
   wait(30, sec); // msec is also possible for milliseconds precision
 
   //stop catapult, toggle off
-  runCata();
+  runCata();//slowdownCata();
   //goforward
   robot.driveFor(directionType::fwd, 25, distanceUnits::in);
   //add thwacker lower, 400 degrees??
@@ -144,8 +144,10 @@ void skillAuton(void)
 
   // add pneumatics code
   robot.driveFor(directionType::fwd, 24, distanceUnits::in);
+  //needs to be adjusted
   valve.set(true);
-  robot.driveFor(directionType::fwd, 5, distanceUnits::in);
+  robot.driveFor(directionType::fwd, 5, distanceUnits::in, false);
+  wait(3,sec);
   robot.driveFor(directionType::fwd, -15, distanceUnits::in);
   robot.driveFor(directionType::fwd, 13, distanceUnits::in);
   //turning
@@ -172,7 +174,7 @@ void usercontrol(void) {
       // left = Axis2 + Axis4
       // right = Axis2 - Axis4
       int drivetrainLeftSideSpeed = Controller1.Axis2.position() + Controller1.Axis4.position();
-      int drivetrainRightSideSpeed = Controller1.Axis2.position() - Controller1.Axis4.position()* 0.7; // may change multiplier
+      int drivetrainRightSideSpeed = Controller1.Axis2.position() - Controller1.Axis4.position()* 0.5; // may change multiplier
       
       // check if the value is inside of the deadband range
       if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {

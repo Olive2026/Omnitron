@@ -30,12 +30,12 @@ brain Brain;
 
 // VEXcode device constructors
 motor leftF = motor(PORT11, ratio6_1, false);
-motor leftTB = motor(PORT4, ratio6_1, false);
-motor leftBB = motor(PORT19, ratio6_1, true);
+motor leftTB = motor(PORT19, ratio6_1, true);
+motor leftBB = motor(PORT4, ratio6_1, false); 
 motor rightF = motor(PORT1, ratio6_1, true);
 motor rightTB = motor(PORT9, ratio6_1, false);
 motor rightBB = motor(PORT2, ratio6_1, true);
-motor thwacker = motor(PORT10, ratio6_1, false);
+motor thwacker = motor(PORT10, ratio6_1, true);
 digital_out valve = digital_out(Brain.ThreeWirePort.A);
 
 controller Controller1 = controller(primary);
