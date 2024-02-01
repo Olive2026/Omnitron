@@ -111,13 +111,7 @@ double gearRat = 4/7;
 
 drivetrain robot(left_motors, right_motors, wheel_circumference, wheel_distance, wheel_base, distanceUnits::in, gearRat);
 
-// void solonoid(){
-//   if(valve.value() == 1){
-//     valve.set(false);
-//   } else if(valve.value() == 0) {
-//     valve.set(true);
-//   }
-// }
+
 void solonoid(){
   if(valve.value() == 1){
     valve.set(false);
@@ -129,8 +123,20 @@ void skillAuton(void)
 {
   robot.setDriveVelocity(50, percentUnits::pct);
   
-  thwacker.setVelocity(60, percentUnits::pct);
+  thwacker.setVelocity(70, percentUnits::pct);
+
+  // thwacker.spinFor(directionType::fwd, 4300, degrees);
+  // robot.driveFor(directionType::fwd, -2, distanceUnits::in);
+  // thwacker.spinFor(directionType::fwd, 4300, degrees);
+  // robot.driveFor(directionType::fwd, -2, distanceUnits::in);
+  // thwacker.spinFor(directionType::fwd, 4300, degrees);
+  // robot.driveFor(directionType::fwd, -2, distanceUnits::in);
+  // thwacker.spinFor(directionType::fwd, 4300, degrees);
+  // robot.driveFor(directionType::fwd, -2, distanceUnits::in);
+  // thwacker.spinFor(directionType::fwd, 4300, degrees);
+
   runCata();
+
   //TODO: wait for 35 secs
   wait(30, sec); // msec is also possible for milliseconds precision
 
@@ -173,8 +179,8 @@ void usercontrol(void) {
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis2 + Axis4
       // right = Axis2 - Axis4
-      int drivetrainLeftSideSpeed = Controller1.Axis2.position() + Controller1.Axis4.position();
-      int drivetrainRightSideSpeed = Controller1.Axis2.position() - Controller1.Axis4.position()* 0.5; // may change multiplier
+      int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position();
+      int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position()* 0.5; // may change multiplier
       
       // check if the value is inside of the deadband range
       if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
@@ -227,15 +233,14 @@ int main() {
   // Set up callbacks for autonomous and driver control periods.
 
   //Sets up the if statement for testing
-  //int val = 2;
+  int val = 3;
 
   thwacker.setVelocity(60, percent);
   //competition Comp;
   //Comp.autonomous(skillAuton);
   //Comp.drivercontrol(usercontrol);
-  skillAuton();
   // Run the pre-autonomous function.
-  /*
+  
   if(val==1)
   {
     autonomous();
@@ -248,7 +253,6 @@ int main() {
   {
     usercontrol();
   }
-  */
   
 
   // Prevent main from exiting with an infinite loop.
