@@ -125,47 +125,15 @@ void skillAuton(void)
   
   thwacker.setVelocity(70, percentUnits::pct);
 
-  // thwacker.spinFor(directionType::fwd, 4300, degrees);
-  // robot.driveFor(directionType::fwd, -2, distanceUnits::in);
-  // thwacker.spinFor(directionType::fwd, 4300, degrees);
-  // robot.driveFor(directionType::fwd, -2, distanceUnits::in);
-  // thwacker.spinFor(directionType::fwd, 4300, degrees);
-  // robot.driveFor(directionType::fwd, -2, distanceUnits::in);
-  // thwacker.spinFor(directionType::fwd, 4300, degrees);
-  // robot.driveFor(directionType::fwd, -2, distanceUnits::in);
-  // thwacker.spinFor(directionType::fwd, 4300, degrees);
 
-  runCata();
 
   //TODO: wait for 35 secs
-  wait(30, sec); // msec is also possible for milliseconds precision
+   // msec is also possible for milliseconds precision
 
   //stop catapult, toggle off
-  runCata();//slowdownCata();
+  //slowdownCata();
   //goforward
-  robot.driveFor(directionType::fwd, 25, distanceUnits::in);
-  //add thwacker lower, 400 degrees??
-  robot.driveFor(directionType::fwd, 35, distanceUnits::in);
-  robot.turnFor(145, rotationUnits::deg);
-
-  // add pneumatics code
-  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
-  //needs to be adjusted
-  valve.set(true);
-  robot.driveFor(directionType::fwd, 5, distanceUnits::in, false);
-  wait(3,sec);
-  robot.driveFor(directionType::fwd, -15, distanceUnits::in);
-  robot.driveFor(directionType::fwd, 13, distanceUnits::in);
-  //turning
-  robot.turnFor(80, rotationUnits::deg);
-  robot.driveFor(directionType::fwd, 10, distanceUnits::in);
-  robot.turnFor(90, rotationUnits::deg);
-  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
-  robot.turnFor(90, rotationUnits::deg);
-  robot.driveFor(directionType::fwd, -25, distanceUnits::in);
-  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
-  robot.driveFor(directionType::fwd, -25, distanceUnits::in);
-  robot.turnFor(90, rotationUnits::deg);
+// REWRITE
   
 
 }
