@@ -37,7 +37,7 @@ motor rightTB = motor(PORT9, ratio6_1, false);
 motor rightBB = motor(PORT2, ratio6_1, true);
 motor thwacker = motor(PORT10, ratio6_1, true);
 digital_out valve = digital_out(Brain.ThreeWirePort.A);
-srhfsgdjyzr
+
 controller Controller1 = controller(primary);
 // VEXcode generated functions
 
