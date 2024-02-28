@@ -43,6 +43,7 @@ competition Competition;
 /*  not every time that the robot is disabled.                               */
 /*---------------------------------------------------------------------------*/
 bool cataRunning = false;
+
 void runCata()
 {
   cataRunning = !cataRunning;
@@ -55,8 +56,31 @@ void runCata()
     thwacker.stop();
   }
 }
-void pre_auton(void) {
 
+
+// define variable for remote controller enable/disable
+bool RemoteControlCodeEnabled = true;
+// define variables used for controlling motors based on controller inputs
+bool DrivetrainLNeedsToBeStopped_Controller1 = true;
+bool DrivetrainRNeedsToBeStopped_Controller1 = true;
+
+// may add another controller
+//controller Controller1 = controller(primary);
+
+motor_group left_motors(leftF, leftTB, leftBB);
+motor_group right_motors(rightF, rightTB, rightBB);
+
+double wheel_diameter = 4;
+double wheel_circumference = 2 * (wheel_diameter/2) * 3.14; // 2 * r * PI
+double wheel_distance = 12; // 14 inches
+double wheel_base = 12.5;
+double gearRat = 4/7;
+
+drivetrain robot(left_motors, right_motors, wheel_circumference, wheel_distance, wheel_base, distanceUnits::in, gearRat);
+//night
+void pre_auton(void) {
+  left_motors.setStopping(hold);
+  right_motors.setStopping(hold);
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
   vexcodeInit();
@@ -91,25 +115,8 @@ void autonomous(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-// define variable for remote controller enable/disable
-bool RemoteControlCodeEnabled = true;
-// define variables used for controlling motors based on controller inputs
-bool DrivetrainLNeedsToBeStopped_Controller1 = true;
-bool DrivetrainRNeedsToBeStopped_Controller1 = true;
 
-// may add another controller
-//controller Controller1 = controller(primary);
 
-motor_group left_motors(leftF, leftTB, leftBB);
-motor_group right_motors(rightF, rightTB, rightBB);
-
-double wheel_diameter = 4;
-double wheel_circumference = 2 * (wheel_diameter/2) * 3.14; // 2 * r * PI
-double wheel_distance = 12; // 14 inches
-double wheel_base = 12.5;
-double gearRat = 4/7;
-
-drivetrain robot(left_motors, right_motors, wheel_circumference, wheel_distance, wheel_base, distanceUnits::in, gearRat);
 
 // void solonoid(){
 //   if(valve.value() == 1){
@@ -127,39 +134,53 @@ void solonoid(){
 }
 void skillAuton(void)
 {
-  robot.setDriveVelocity(50, percentUnits::pct);
+  robot.setDriveVelocity(50, percent);
   
-  thwacker.setVelocity(60, percentUnits::pct);
-  runCata();
+  thwacker.setVelocity(70, percent);
+
+//Testing
+  //robot.driveFor(forward, 1000, inches);
+
+//BEFORE RUN, SCALING MUST BE DONE- I may come in if possible and do that
+  robot.driveFor(forward, 36, inches);
+  robot.turnFor(30, degrees);
+  robot.driveFor(forward, 7, inches);
+  robot.driveFor(forward, -7, inches);
+  robot.driveFor(forward, 7, inches);
+  robot.driveFor(forward, -9, inches);
+  robot.turnFor(60, degrees);
+  robot.driveFor(forward, 12, inches);
+  robot.turnFor(60, degrees);
+  robot.driveFor(forward, 7, inches);
+  robot.driveFor(forward, -7, inches);
+  robot.driveFor(forward, 7, inches);
+  robot.driveFor(forward, -7, inches);
+  robot.driveFor(forward, 7, inches);
+  robot.driveFor(forward, -11, inches);
+
   //TODO: wait for 35 secs
   wait(30, sec); // msec is also possible for milliseconds precision
 
   //stop catapult, toggle off
   runCata();//slowdownCata();
   //goforward
-  robot.driveFor(directionType::fwd, 25, distanceUnits::in);
-  //add thwacker lower, 400 degrees??
-  robot.driveFor(directionType::fwd, 35, distanceUnits::in);
-  robot.turnFor(145, rotationUnits::deg);
+  // robot.driveFor(directionType::fwd, 25, distanceUnits::in);
+  // //add thwacker lower, 400 degrees??
+  // robot.driveFor(directionType::fwd, 35, distanceUnits::in);
+  // robot.turnFor(145, rotationUnits::deg);
 
-  // add pneumatics code
-  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
-  //needs to be adjusted
-  valve.set(true);
-  robot.driveFor(directionType::fwd, 5, distanceUnits::in, false);
-  wait(3,sec);
-  robot.driveFor(directionType::fwd, -15, distanceUnits::in);
-  robot.driveFor(directionType::fwd, 13, distanceUnits::in);
-  //turning
-  robot.turnFor(80, rotationUnits::deg);
-  robot.driveFor(directionType::fwd, 10, distanceUnits::in);
-  robot.turnFor(90, rotationUnits::deg);
-  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
-  robot.turnFor(90, rotationUnits::deg);
-  robot.driveFor(directionType::fwd, -25, distanceUnits::in);
-  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
-  robot.driveFor(directionType::fwd, -25, distanceUnits::in);
-  robot.turnFor(90, rotationUnits::deg);
+/*
+Thwacker section- 30 seconds, running
+
+--------------------------------------------------------
+
+ go forward 3 ft
+ turn 30ish, go forward, back up, forward, back up
+ turn 60, and go forward 1ft
+ turn 30- trying to go forward
+ back, forward, back, forward
+*/
+//robot.driveFor(forward, 1000, , 70, percent);
   
 
 }
@@ -233,9 +254,11 @@ int main() {
   //competition Comp;
   //Comp.autonomous(skillAuton);
   //Comp.drivercontrol(usercontrol);
-  skillAuton();
+  
+  //skillAuton();
+
   // Run the pre-autonomous function.
-  /*
+  int val  = 2;
   if(val==1)
   {
     autonomous();
@@ -248,7 +271,7 @@ int main() {
   {
     usercontrol();
   }
-  */
+  
   
 
   // Prevent main from exiting with an infinite loop.

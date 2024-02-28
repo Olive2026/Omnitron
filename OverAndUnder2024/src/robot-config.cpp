@@ -29,18 +29,18 @@ using code = vision::code;
 brain Brain;
 
 // VEXcode device constructors
-motor leftF = motor(PORT11, ratio6_1, false);
-motor leftTB = motor(PORT19, ratio6_1, true);
-motor leftBB = motor(PORT4, ratio6_1, false); 
-motor rightF = motor(PORT1, ratio6_1, true);
-motor rightTB = motor(PORT9, ratio6_1, false);
+motor leftF = motor(PORT12, ratio6_1, false);
+motor leftTB = motor(PORT10, ratio6_1, true);
+motor leftBB = motor(PORT9, ratio6_1, false); 
+motor rightF = motor(PORT13, ratio6_1, true);
+motor rightTB = motor(PORT1, ratio6_1, false);
 motor rightBB = motor(PORT2, ratio6_1, true);
-motor thwacker = motor(PORT10, ratio6_1, true);
+motor thwacker = motor(PORT5, ratio6_1, true);
+motor intake = motor(PORT4, ratio6_1, false);
 digital_out valve = digital_out(Brain.ThreeWirePort.A);
-
+//radio at 8
 controller Controller1 = controller(primary);
 // VEXcode generated functions
-
 
 
 /**
