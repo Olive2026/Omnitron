@@ -136,46 +136,39 @@ void skillAuton(void)
 {
   robot.setDriveVelocity(50, percent);
   
-<<<<<<< Updated upstream
-  thwacker.setVelocity(60, percentUnits::pct);
-  runCata();
-=======
   thwacker.setVelocity(70, percent);
 
-  robot.driveFor(forward, 1000, inches);
+//Testing
+  //robot.driveFor(forward, 1000, inches);
 
->>>>>>> Stashed changes
+//BEFORE RUN, SCALING MUST BE DONE- I may come in if possible and do that
+  robot.driveFor(forward, 36, inches);
+  robot.turnFor(30, degrees);
+  robot.driveFor(forward, 7, inches);
+  robot.driveFor(forward, -7, inches);
+  robot.driveFor(forward, 7, inches);
+  robot.driveFor(forward, -9, inches);
+  robot.turnFor(60, degrees);
+  robot.driveFor(forward, 12, inches);
+  robot.turnFor(60, degrees);
+  robot.driveFor(forward, 7, inches);
+  robot.driveFor(forward, -7, inches);
+  robot.driveFor(forward, 7, inches);
+  robot.driveFor(forward, -7, inches);
+  robot.driveFor(forward, 7, inches);
+  robot.driveFor(forward, -11, inches);
+
   //TODO: wait for 35 secs
   wait(30, sec); // msec is also possible for milliseconds precision
 
   //stop catapult, toggle off
   runCata();//slowdownCata();
   //goforward
-  robot.driveFor(directionType::fwd, 25, distanceUnits::in);
-  //add thwacker lower, 400 degrees??
-  robot.driveFor(directionType::fwd, 35, distanceUnits::in);
-  robot.turnFor(145, rotationUnits::deg);
+  // robot.driveFor(directionType::fwd, 25, distanceUnits::in);
+  // //add thwacker lower, 400 degrees??
+  // robot.driveFor(directionType::fwd, 35, distanceUnits::in);
+  // robot.turnFor(145, rotationUnits::deg);
 
-<<<<<<< Updated upstream
-  // add pneumatics code
-  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
-  //needs to be adjusted
-  valve.set(true);
-  robot.driveFor(directionType::fwd, 5, distanceUnits::in, false);
-  wait(3,sec);
-  robot.driveFor(directionType::fwd, -15, distanceUnits::in);
-  robot.driveFor(directionType::fwd, 13, distanceUnits::in);
-  //turning
-  robot.turnFor(80, rotationUnits::deg);
-  robot.driveFor(directionType::fwd, 10, distanceUnits::in);
-  robot.turnFor(90, rotationUnits::deg);
-  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
-  robot.turnFor(90, rotationUnits::deg);
-  robot.driveFor(directionType::fwd, -25, distanceUnits::in);
-  robot.driveFor(directionType::fwd, 24, distanceUnits::in);
-  robot.driveFor(directionType::fwd, -25, distanceUnits::in);
-  robot.turnFor(90, rotationUnits::deg);
-=======
 /*
 Thwacker section- 30 seconds, running
 
@@ -188,7 +181,6 @@ Thwacker section- 30 seconds, running
  back, forward, back, forward
 */
 //robot.driveFor(forward, 1000, , 70, percent);
->>>>>>> Stashed changes
   
 
 }
@@ -262,9 +254,11 @@ int main() {
   //competition Comp;
   //Comp.autonomous(skillAuton);
   //Comp.drivercontrol(usercontrol);
-  skillAuton();
+  
+  //skillAuton();
+
   // Run the pre-autonomous function.
-  /*
+  int val  = 2;
   if(val==1)
   {
     autonomous();
@@ -277,7 +271,7 @@ int main() {
   {
     usercontrol();
   }
-  */
+  
   
 
   // Prevent main from exiting with an infinite loop.
